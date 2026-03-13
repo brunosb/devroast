@@ -235,7 +235,7 @@ function CodeEditor({
       </div>
 
       {/* Editor area */}
-      <div className="relative grid">
+      <div className="relative grid max-h-[500px] overflow-auto">
         {/* Highlighted code layer */}
         <div
           ref={preRef}
@@ -257,7 +257,7 @@ function CodeEditor({
           spellCheck={false}
           autoCapitalize="off"
           autoCorrect="off"
-          className="col-start-1 row-start-1 min-h-[300px] w-full resize-none bg-transparent p-5 text-[13px] leading-relaxed text-foreground caret-foreground placeholder:text-muted-foreground/50 focus:outline-none"
+          className="col-start-1 row-start-1 min-h-[300px] w-full resize-none overflow-auto bg-transparent p-5 text-[13px] leading-relaxed text-foreground caret-foreground placeholder:text-muted-foreground/50 focus:outline-none"
           style={{
             WebkitTextFillColor: showHighlighted ? "transparent" : undefined,
           }}
