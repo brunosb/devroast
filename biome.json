@@ -1,7 +1,11 @@
 {
   "$schema": "https://biomejs.dev/schemas/2.4.6/schema.json",
   "files": {
-    "includes": ["**", "!.next", "!.vscode"]
+    "includes": [
+      "**",
+      "!.next",
+      "!.vscode"
+    ]
   },
   "formatter": {
     "indentStyle": "space",
@@ -12,7 +16,10 @@
   },
   "overrides": [
     {
-      "includes": ["src/components/ui/code-block.tsx"],
+      "includes": [
+        "src/components/ui/code-block.tsx",
+        "src/components/code-editor.tsx"
+      ],
       "linter": {
         "rules": {
           "security": {
@@ -22,7 +29,9 @@
       }
     },
     {
-      "includes": ["src/components/ui/toggle.tsx"],
+      "includes": [
+        "src/components/ui/toggle.tsx"
+      ],
       "linter": {
         "rules": {
           "a11y": {

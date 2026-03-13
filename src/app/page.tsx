@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { CodeEditor } from "@/components/code-editor";
 import { Button } from "@/components/ui/button";
 import {
   LeaderboardRowCode,
@@ -51,25 +52,7 @@ export default function Home() {
 
       {/* Code Editor */}
       <section className="mt-12 w-full max-w-[780px]">
-        <div className="overflow-hidden rounded-xl border border-border bg-[#111111]">
-          {/* Traffic lights */}
-          <div className="flex items-center gap-2 border-b border-border px-4 py-3">
-            <span className="size-3 rounded-full bg-[#FF5F57]" />
-            <span className="size-3 rounded-full bg-[#FEBC2E]" />
-            <span className="size-3 rounded-full bg-[#28C840]" />
-            <span className="ml-4 font-mono text-xs text-muted-foreground">
-              paste_here.tsx
-            </span>
-          </div>
-          {/* Textarea */}
-          <textarea
-            value={code}
-            onChange={(e) => setCode(e.target.value)}
-            placeholder="// paste your terrible code here..."
-            spellCheck={false}
-            className="h-[300px] w-full resize-none bg-transparent px-5 py-4 font-mono text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none"
-          />
-        </div>
+        <CodeEditor value={code} onChange={setCode} />
       </section>
 
       {/* Actions Bar */}
