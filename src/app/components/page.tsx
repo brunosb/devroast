@@ -115,11 +115,18 @@ export default function ComponentsPage() {
           <span className="text-accent">{"//"}</span> code_block
         </h2>
         <div className="max-w-[560px]">
-          <CodeBlock
-            code={sampleCode}
-            language="javascript"
-            filename="calculate.js"
-          />
+          <div className="overflow-hidden rounded-lg border border-border">
+            <div className="flex h-10 items-center gap-3 border-b border-border px-4">
+              <span className="size-2.5 rounded-full bg-red-500" />
+              <span className="size-2.5 rounded-full bg-amber-500" />
+              <span className="size-2.5 rounded-full bg-accent" />
+              <span className="flex-1" />
+              <span className="text-xs text-muted-foreground">
+                calculate.js
+              </span>
+            </div>
+            <CodeBlock code={sampleCode} language="javascript" />
+          </div>
         </div>
       </section>
 

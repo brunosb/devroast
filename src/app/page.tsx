@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { CodeEditor } from "@/components/code-editor";
+import { CodeEditor, MAX_CHARS } from "@/components/code-editor";
 import { Button } from "@/components/ui/button";
 import {
   LeaderboardRowCode,
@@ -62,7 +62,7 @@ export default function Home() {
           variant="accent"
           size="md"
           className="font-mono"
-          disabled={code.trim().length === 0}
+          disabled={code.trim().length === 0 || code.length > MAX_CHARS}
         >
           <span className="text-accent-foreground/70">$</span> roast_my_code
         </Button>

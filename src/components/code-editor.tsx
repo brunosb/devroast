@@ -12,6 +12,8 @@ import {
 import { createHighlighter, type Highlighter } from "shiki";
 import { twMerge } from "tailwind-merge";
 
+const MAX_CHARS = 2500;
+
 const LANGUAGES = [
   { id: "javascript", label: "JavaScript", ext: "js" },
   { id: "typescript", label: "TypeScript", ext: "tsx" },
@@ -263,8 +265,22 @@ function CodeEditor({
           }}
         />
       </div>
+
+      {/* Footer */}
+      <div className="flex items-center justify-end border-t border-border px-4 py-1.5">
+        <span
+          className={twMerge(
+            "text-[11px] tabular-nums",
+            value.length > MAX_CHARS
+              ? "text-red-400"
+              : "text-muted-foreground/60",
+          )}
+        >
+          {value.length}/{MAX_CHARS}
+        </span>
+      </div>
     </div>
   );
 }
 
-export { CodeEditor, LANGUAGES, type CodeEditorProps };
+export { CodeEditor, LANGUAGES, MAX_CHARS, type CodeEditorProps };
