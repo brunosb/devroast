@@ -9,25 +9,32 @@ Arquivo: `specs/<nome-da-feature>.md`
 # Título da Feature — Spec
 
 ## Contexto
+
 Por que essa feature existe, qual problema resolve, estado atual.
 
 ## Pesquisa (opcional)
+
 Análise de como outros projetos resolvem o mesmo problema.
 
 ## Alternativas avaliadas
+
 Opções consideradas com prós/contras. Marcar a recomendada com ⭐.
 
 ## Decisão
+
 Qual alternativa foi escolhida e justificativa breve.
 
 ## Especificação de implementação
+
 Detalhes técnicos: componentes, estrutura visual (ASCII), fluxo,
 props/API, tabelas, relacionamentos — o que for relevante.
 
 ## Decisões
+
 Lista de decisões-chave tomadas durante o planejamento (numerada).
 
 ## To-dos
+
 Checklist de implementação agrupado por fase ([ ] para cada item).
 ```
 
