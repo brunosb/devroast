@@ -1,35 +1,10 @@
 import Link from "next/link";
-import {
-  LeaderboardRowCode,
-  LeaderboardRowLanguage,
-  LeaderboardRowRank,
-  LeaderboardRowRoot,
-  LeaderboardRowScore,
-} from "@/components/ui/leaderboard-row";
+import { Suspense } from "react";
 import { HydrateClient } from "@/trpc/server";
 import { CodeSubmitForm } from "./code-submit-form";
 import { FooterStats } from "./footer-stats";
-
-const leaderboardData = [
-  {
-    rank: 1,
-    score: 2.1,
-    codePreview: "if (x == true && y == true && z == true) { return true }",
-    language: "JavaScript",
-  },
-  {
-    rank: 2,
-    score: 3.4,
-    codePreview: "for i in range(len(list)): print(list[i])",
-    language: "Python",
-  },
-  {
-    rank: 3,
-    score: 4.8,
-    codePreview: "catch (Exception e) { /* TODO: handle later */ }",
-    language: "Java",
-  },
-];
+import { ShameLeaderboard } from "./shame-leaderboard";
+import { ShameLeaderboardSkeleton } from "./shame-leaderboard-skeleton";
 
 export default function Home() {
   return (
@@ -52,7 +27,7 @@ export default function Home() {
         <FooterStats />
 
         {/* Leaderboard Preview */}
-        <section className="mt-16 w-full max-w-[960px]">
+        <section className="mt-16 flex w-full max-w-[960px] flex-col gap-5">
           <div className="flex items-center justify-between">
             <h2 className="font-mono text-sm text-muted-foreground">
               <span className="text-muted-foreground/50">{"// "}</span>
@@ -66,30 +41,10 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* Table Header */}
-          <div className="mt-4 flex items-center gap-6 border-b border-border px-5 py-2 font-mono text-[11px] uppercase tracking-wider text-muted-foreground/60">
-            <span className="w-10">rank</span>
-            <span className="w-15">score</span>
-            <span className="flex-1">code preview</span>
-            <span className="w-25 text-right">language</span>
-          </div>
-
-          {/* Rows */}
-          {leaderboardData.map((entry) => (
-            <LeaderboardRowRoot key={entry.rank}>
-              <LeaderboardRowRank>#{entry.rank}</LeaderboardRowRank>
-              <LeaderboardRowScore score={entry.score} />
-              <LeaderboardRowCode>{entry.codePreview}</LeaderboardRowCode>
-              <LeaderboardRowLanguage>{entry.language}</LeaderboardRowLanguage>
-            </LeaderboardRowRoot>
-          ))}
-
-          <Link
-            href="/leaderboard"
-            className="mt-4 block text-center font-mono text-xs text-accent transition-colors hover:text-accent/80"
-          >
-            $ view_all {">>"}
-          </Link>
+          {/* Cards + Info Footer */}
+          <Suspense fallback={<ShameLeaderboardSkeleton />}>
+            <ShameLeaderboard />
+          </Suspense>
         </section>
       </main>
     </HydrateClient>
