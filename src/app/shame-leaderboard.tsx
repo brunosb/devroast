@@ -1,5 +1,6 @@
 import "server-only";
 
+import { cacheLife } from "next/cache";
 import Link from "next/link";
 import { CodeBlock } from "@/components/ui/code-block";
 import { createTRPCContext } from "@/trpc/init";
@@ -7,6 +8,9 @@ import { appRouter } from "@/trpc/routers/_app";
 import { CollapsibleCode } from "./collapsible-code";
 
 export async function ShameLeaderboard() {
+  "use cache";
+  cacheLife("hours");
+
   const caller = appRouter.createCaller(await createTRPCContext());
 
   const [topWorst, stats] = await Promise.all([

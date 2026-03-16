@@ -28,4 +28,18 @@ export const leaderboardRouter = router({
       .orderBy(asc(roasts.score))
       .limit(3);
   }),
+
+  getFullLeaderboard: publicProcedure.query(async ({ ctx }) => {
+    return ctx.db
+      .select({
+        id: roasts.id,
+        score: roasts.score,
+        code: roasts.code,
+        language: roasts.language,
+        lineCount: roasts.lineCount,
+      })
+      .from(roasts)
+      .orderBy(asc(roasts.score))
+      .limit(20);
+  }),
 });

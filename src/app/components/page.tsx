@@ -1,3 +1,5 @@
+"use cache";
+
 import {
   AnalysisCardDescription,
   AnalysisCardRoot,
@@ -36,7 +38,7 @@ const sampleCode = `function calculateTotal(items) {
   return total;
 }`;
 
-export default function ComponentsPage() {
+export default async function ComponentsPage() {
   return (
     <div className="min-h-screen bg-background p-12">
       <h1 className="mb-12 font-mono text-3xl font-bold text-foreground">
