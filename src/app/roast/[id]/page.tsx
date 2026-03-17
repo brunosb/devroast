@@ -1,11 +1,52 @@
+import { eq } from "drizzle-orm";
 import type { Metadata } from "next";
 import { Suspense } from "react";
+import { db } from "@/db";
+import { roasts } from "@/db/schema";
 import { RoastContent } from "./roast-content";
 
-export const metadata: Metadata = {
-  title: "Roast Results | DevRoast",
-  description: "Your code has been roasted. See how bad it really is.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+  const { id } = await params;
+  const [roast] = await db.select().from(roasts).where(eq(roasts.id, id));
+
+  if (!roast) {
+    return {
+      title: "Roast Not Found | DevRoast",
+    };
+  }
+
+  const description =
+    roast.roastText.length > 150
+      ? `${roast.roastText.slice(0, 147)}...`
+      : roast.roastText;
+
+  return {
+    title: `Score ${roast.score}/10 — ${roast.verdict} | DevRoast`,
+    description,
+    openGraph: {
+      title: `Score ${roast.score}/10 — ${roast.verdict} | DevRoast`,
+      description,
+      images: [
+        {
+          url: `/api/og/${id}`,
+          width: 1200,
+          height: 630,
+          type: "image/png",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `Score ${roast.score}/10 — ${roast.verdict} | DevRoast`,
+      description,
+      images: [`/api/og/${id}`],
+    },
+  };
+}
 
 function RoastSkeleton() {
   return (

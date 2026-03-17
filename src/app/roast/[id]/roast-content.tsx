@@ -11,6 +11,7 @@ import { DiffLine } from "@/components/ui/diff-line";
 import { ScoreRing } from "@/components/ui/score-ring";
 import { db } from "@/db";
 import { issues, roasts } from "@/db/schema";
+import { ShareButton } from "./share-button";
 
 type VerdictStatus = "critical" | "warning" | "good";
 
@@ -77,6 +78,8 @@ export async function RoastContent({
               </>
             )}
           </div>
+
+          <ShareButton roastId={roast.id} />
         </div>
       </section>
 
